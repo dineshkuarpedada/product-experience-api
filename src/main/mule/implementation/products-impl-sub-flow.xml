@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<sub-flow name="product-request-subflow" doc:id="69f0727f-e925-41a3-9953-6da028899f90" >
+		<http:request method="#[vars.method]" doc:name="PAPI Product Request" doc:id="bd8f0d7b-730a-490e-a4db-231900d1cb7f" config-ref="HTTP_Request_PAPI_configuration" path="#[vars.path]" sendCorrelationId="ALWAYS" correlationId="#[vars.correlationId]">
+			<http:query-params ><![CDATA[#[vars.queryParams default {}]]]></http:query-params>
+		</http:request>
+	</sub-flow>
+</mule>
