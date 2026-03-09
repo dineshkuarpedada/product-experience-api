@@ -45,12 +45,9 @@ http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mu
 		api="resource::2527df56-2b74-4a9b-904a-e30d1eb9a4a4:product-experience-api:1.0.0:raml:zip:product-experience-api.raml"
 		outboundHeadersMapName="outboundHeaders"
 		httpStatusVarName="httpStatus" queryParamsStrictValidation="true" />
-<!-- 	<api-gateway:autodiscovery
-		apiId="${autodiscoveryId}" ignoreBasePath="true"
-		doc:name="API Autodiscovery"
-		doc:id="b65430d7-6f2b-4d6d-ae52-693560d77528"
-		flowRef="product-experience-api-main"
-		doc:description="{autodiscoveryId} 
+	<!-- <api-gateway:autodiscovery apiId="${autodiscoveryId}" ignoreBasePath="true" 
+		doc:name="API Autodiscovery" doc:id="b65430d7-6f2b-4d6d-ae52-693560d77528" 
+		flowRef="product-experience-api-main" doc:description="{autodiscoveryId} 
 		taken form environemnt configuration yamls." /> -->
 	<http:listener-config
 		name="HTTP_Listener_config_new" doc:name="HTTP Listener config"
@@ -63,7 +60,17 @@ http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mu
 		doc:name="HTTP Request configuration"
 		doc:id="e7ae7b46-89c1-468d-bdc2-37ef0372c235"
 		responseTimeout="${papi.response-timeout}">
-		<http:request-connection
-			host="${papi.host}" connectionIdleTimeout="300000" />
+		<http:request-connection host="${papi.host}"
+			connectionIdleTimeout="300000" />
+		<http:default-headers>
+			<http:default-header key="client_id"
+				value="${application.clientid}" />
+			<http:default-header key="client_secret"
+				value="${secure::application.clientsecret}" />
+		</http:default-headers>
 	</http:request-config>
+	<secure-properties:config
+		name="secure-properties-config" doc:name="Secure Properties Config"
+		doc:id="8909416a-d03d-4ab6-95eb-fd58c05fd3ae"
+		file="properties/secure/${mule.env}-secure.yaml" key="${secure.key}" />
 </mule>
