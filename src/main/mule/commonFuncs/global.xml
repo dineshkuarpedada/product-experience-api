@@ -42,7 +42,7 @@ http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mu
 		value="GbRbxVjnp4NkwUjHRDRXeEFyGM9nWd5g"
 		doc:description="Local encryption key - overwrite by VM args!" />
 	<apikit:config name="product-experience-api-config"
-		api="resource::2527df56-2b74-4a9b-904a-e30d1eb9a4a4:product-experience-api:1.0.0:raml:zip:product-experience-api.raml"
+		api="resource::2527df56-2b74-4a9b-904a-e30d1eb9a4a4:product-experience-api:1.0.2:raml:zip:product-experience-api.raml"
 		outboundHeadersMapName="outboundHeaders"
 		httpStatusVarName="httpStatus" queryParamsStrictValidation="true" />
 	<api-gateway:autodiscovery apiId="${autodiscoveryId}" ignoreBasePath="true" 
