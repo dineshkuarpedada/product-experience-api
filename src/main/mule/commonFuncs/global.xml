@@ -45,10 +45,10 @@ http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mu
 		api="resource::2527df56-2b74-4a9b-904a-e30d1eb9a4a4:product-experience-api:1.0.2:raml:zip:product-experience-api.raml"
 		outboundHeadersMapName="outboundHeaders"
 		httpStatusVarName="httpStatus" queryParamsStrictValidation="true" />
-	<api-gateway:autodiscovery apiId="${autodiscoveryId}" ignoreBasePath="true" 
+	<!-- <api-gateway:autodiscovery apiId="${autodiscoveryId}" ignoreBasePath="true" 
 		doc:name="API Autodiscovery" doc:id="b65430d7-6f2b-4d6d-ae52-693560d77528" 
 		flowRef="product-experience-api-main" doc:description="{autodiscoveryId} 
-		taken form environemnt configuration yamls." />
+		taken form environemnt configuration yamls." /> -->
 	<http:listener-config
 		name="HTTP_Listener_config_new" doc:name="HTTP Listener config"
 		doc:id="0282fd6c-8f1a-4818-8212-a438f219ecbb">

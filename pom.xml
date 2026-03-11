@@ -15,8 +15,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<app.runtime>4.7.4</app.runtime>
-		<mule.maven.plugin.version>4.1.1</mule.maven.plugin.version>
+		<app.runtime>4.11.0</app.runtime>
+		<mule.maven.plugin.version>4.7.0</mule.maven.plugin.version>
 		<munit.version>3.7.0</munit.version>
 	</properties>
 
@@ -34,8 +34,6 @@
 						<environment>Sandbox</environment>
 						<target>Cloudhub-US-East-2</target>
 						<muleVersion>4.11.0</muleVersion>
-						<username>dpedada32</username>
-						<password>Welcome@2026</password>
 						<applicationName>product-experience-api</applicationName>
 						<replicas>1</replicas>
 						<vCores>0.1</vCores>

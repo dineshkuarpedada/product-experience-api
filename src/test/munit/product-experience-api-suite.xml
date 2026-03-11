@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="product-experience-api-suite.xml" />
+	<munit:test name="get:\api-status:product-experience-api-config-test" doc:id="93b49767-e1e3-4116-b0e7-e8eb3a796de2" >
+		<munit:behavior >
+			<munit:set-event doc:name="Set Input" doc:id="ef59b636-fbf0-4659-807f-0041be413b80" >
+				<munit:payload value="#[readUrl('classpath://getapistatusproductexperienceapiconfigtest\set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://getapistatusproductexperienceapiconfigtest\set-event_attributes1.dwl')]" />
+				<munit:variables >
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://getapistatusproductexperienceapiconfigtest\set-event_variable_3.dwl')]" />
+					<munit:variable key="apiKickOffTime" value="#[output application/json --- readUrl('classpath://getapistatusproductexperienceapiconfigtest\set-event_variable_4.dwl')]" encoding="UTF-8" mediaType="application/json" />
+					<munit:variable key="loggingVars" value="#[output application/json --- readUrl('classpath://getapistatusproductexperienceapiconfigtest\set-event_variable_5.dwl')]" encoding="UTF-8" mediaType="application/json" />
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to get:\api-status:product-experience-api-config" doc:id="084a0a68-d3b4-4025-814f-cc697721cddb" name="get:\api-status:product-experience-api-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="4ec35dcb-b23c-41e4-ae00-cee4456abb6e" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import getapistatusproductexperienceapiconfigtest::assert_expression_payload1
+---
+assert_expression_payload1::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+			<munit-tools:verify-call doc:name="Verify set api status response" doc:id="33a16cde-3e0c-4084-85f8-125c85137b6c" processor="ee:transform" times="1">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="eddcef69-4581-4b43-bd1c-e5db452c1876" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="get:\products:product-experience-api-config-test" doc:id="3604ae14-a488-417d-b774-a818b06ed45e" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock product-request-implementation-subflow" doc:id="626f8405-d7bf-470d-b92a-fc8841150f2f" processor="flow-ref">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="24ed6fb4-2d74-4bb8-a120-ab878adedb72" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[output application/json --- readUrl('classpath://getproductsproductexperienceapiconfigtest1\mock_payload.dwl')]" mediaType="application/json" encoding="UTF-8" />
+					<munit-tools:attributes value="#[readUrl('classpath://getproductsproductexperienceapiconfigtest1\mock_attributes.dwl')]" />
+					<munit-tools:variables >
+						<munit-tools:variable key="path" value="#[output application/java --- readUrl('classpath://getproductsproductexperienceapiconfigtest1\mock_variable_.dwl')]" mediaType="application/java" encoding="UTF-8" />
+						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://getproductsproductexperienceapiconfigtest1\mock_variable_1.dwl')]" />
+						<munit-tools:variable key="method" value="#[output application/java --- readUrl('classpath://getproductsproductexperienceapiconfigtest1\mock_variable_2.dwl')]" mediaType="application/java" encoding="UTF-8" />
+						<munit-tools:variable key="loggingVars" value="#[output application/json --- readUrl('classpath://getproductsproductexperienceapiconfigtest1\mock_variable_3.dwl')]" mediaType="application/json" encoding="UTF-8" />
+						<munit-tools:variable key="apiKickOffTime" value="#[output application/json --- readUrl('classpath://getproductsproductexperienceapiconfigtest1\mock_variable_4.dwl')]" mediaType="application/json" encoding="UTF-8" />
+						<munit-tools:variable key="queryParams" value="#[output application/json --- readUrl('classpath://getproductsproductexperienceapiconfigtest1\mock_variable_5.dwl')]" mediaType="application/json" encoding="UTF-8" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="011f92a3-8bc0-4052-9ea9-8b81aa4d36b5" >
+				<munit:payload value="#[readUrl('classpath://getproductsproductexperienceapiconfigtest1\set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://getproductsproductexperienceapiconfigtest1\set-event_attributes.dwl')]" />
+				<munit:variables >
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://getproductsproductexperienceapiconfigtest1\set-event_variable_.dwl')]" />
+					<munit:variable key="apiKickOffTime" value="#[output application/json --- readUrl('classpath://getproductsproductexperienceapiconfigtest1\set-event_variable_1.dwl')]" encoding="UTF-8" mediaType="application/json" />
+					<munit:variable key="loggingVars" value="#[output application/json --- readUrl('classpath://getproductsproductexperienceapiconfigtest1\set-event_variable_2.dwl')]" encoding="UTF-8" mediaType="application/json" />
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to get:\products:product-experience-api-config" doc:id="02abbc49-02c3-4bb3-a268-629014753bee" name="get:\products:product-experience-api-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="82a674b4-f8f9-4139-84a0-1c8c4711f425" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import getproductsproductexperienceapiconfigtest1::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="post:\products:application\json:product-experience-api-config-test" doc:id="c94afa45-0785-4a42-9837-5fbac24b9e4d" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock product-request-implementation-subflow" doc:id="5b9ae3b8-2bdf-40d3-8319-09375e10609a" processor="flow-ref">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="c34bc5a3-e4c6-4eb4-b1fe-9c94a78ee553" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[output application/json --- readUrl('classpath://postproductsapplicationjsonproductexperienceapiconfigtest1\mock_payload.dwl')]" mediaType="application/json" encoding="UTF-8" />
+					<munit-tools:attributes value="#[readUrl('classpath://postproductsapplicationjsonproductexperienceapiconfigtest1\mock_attributes.dwl')]" />
+					<munit-tools:variables >
+						<munit-tools:variable key="path" value="#[output application/java --- readUrl('classpath://postproductsapplicationjsonproductexperienceapiconfigtest1\mock_variable_.dwl')]" mediaType="application/java" encoding="UTF-8" />
+						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://postproductsapplicationjsonproductexperienceapiconfigtest1\mock_variable_1.dwl')]" />
+						<munit-tools:variable key="method" value="#[output application/java --- readUrl('classpath://postproductsapplicationjsonproductexperienceapiconfigtest1\mock_variable_2.dwl')]" mediaType="application/java" encoding="UTF-8" />
+						<munit-tools:variable key="apiKickOffTime" value="#[output application/json --- readUrl('classpath://postproductsapplicationjsonproductexperienceapiconfigtest1\mock_variable_3.dwl')]" mediaType="application/json" encoding="UTF-8" />
+						<munit-tools:variable key="loggingVars" value="#[output application/json --- readUrl('classpath://postproductsapplicationjsonproductexperienceapiconfigtest1\mock_variable_4.dwl')]" mediaType="application/json" encoding="UTF-8" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="539f6ad2-d22e-4331-851a-a5ce2e9247e4" >
+				<munit:payload value="#[output application/json --- readUrl('classpath://postproductsapplicationjsonproductexperienceapiconfigtest1\set-event_payload.dwl')]" encoding="UTF-8" mediaType="application/json" />
+				<munit:attributes value="#[readUrl('classpath://postproductsapplicationjsonproductexperienceapiconfigtest1\set-event_attributes.dwl')]" />
+				<munit:variables >
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://postproductsapplicationjsonproductexperienceapiconfigtest1\set-event_variable_.dwl')]" />
+					<munit:variable key="apiKickOffTime" value="#[output application/json --- readUrl('classpath://postproductsapplicationjsonproductexperienceapiconfigtest1\set-event_variable_1.dwl')]" encoding="UTF-8" mediaType="application/json" />
+					<munit:variable key="loggingVars" value="#[output application/json --- readUrl('classpath://postproductsapplicationjsonproductexperienceapiconfigtest1\set-event_variable_2.dwl')]" encoding="UTF-8" mediaType="application/json" />
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to post:\products:application\json:product-experience-api-config" doc:id="e353c427-ed7b-48e2-8a91-018917afe9fd" name="post:\products:application\json:product-experience-api-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="1193cf52-e83a-4000-9096-fc94876e46ad" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import postproductsapplicationjsonproductexperienceapiconfigtest1::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="patch:\products\(productId):application\json:product-experience-api-config-test" doc:id="fc2f6035-c25d-4ac1-94dd-c7b692ad55a2" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock product-request-implementation-subflow" doc:id="85e97dba-d5fd-4eda-ac26-d5612caa635a" processor="flow-ref">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="061ac829-6fd8-4180-bf59-659616e44934" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[output application/json --- readUrl('classpath://patchproductsproductIdapplicationjsonproductexperienceapiconfigtest1\mock_payload.dwl')]" mediaType="application/json" encoding="UTF-8" />
+					<munit-tools:attributes value="#[readUrl('classpath://patchproductsproductIdapplicationjsonproductexperienceapiconfigtest1\mock_attributes.dwl')]" />
+					<munit-tools:variables >
+						<munit-tools:variable key="path" value="#[output application/java --- readUrl('classpath://patchproductsproductIdapplicationjsonproductexperienceapiconfigtest1\mock_variable_.dwl')]" mediaType="application/java" encoding="UTF-8" />
+						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://patchproductsproductIdapplicationjsonproductexperienceapiconfigtest1\mock_variable_1.dwl')]" />
+						<munit-tools:variable key="method" value="#[output application/java --- readUrl('classpath://patchproductsproductIdapplicationjsonproductexperienceapiconfigtest1\mock_variable_2.dwl')]" mediaType="application/java" encoding="UTF-8" />
+						<munit-tools:variable key="apiKickOffTime" value="#[output application/json --- readUrl('classpath://patchproductsproductIdapplicationjsonproductexperienceapiconfigtest1\mock_variable_3.dwl')]" mediaType="application/json" encoding="UTF-8" />
+						<munit-tools:variable key="loggingVars" value="#[output application/json --- readUrl('classpath://patchproductsproductIdapplicationjsonproductexperienceapiconfigtest1\mock_variable_4.dwl')]" mediaType="application/json" encoding="UTF-8" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="9fe0f71b-83ec-44a7-98b3-6ebedce43035" >
+				<munit:payload value="#[output application/json --- readUrl('classpath://patchproductsproductIdapplicationjsonproductexperienceapiconfigtest1\set-event_payload.dwl')]" encoding="UTF-8" mediaType="application/json" />
+				<munit:attributes value="#[readUrl('classpath://patchproductsproductIdapplicationjsonproductexperienceapiconfigtest1\set-event_attributes.dwl')]" />
+				<munit:variables >
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://patchproductsproductIdapplicationjsonproductexperienceapiconfigtest1\set-event_variable_.dwl')]" />
+					<munit:variable key="apiKickOffTime" value="#[output application/json --- readUrl('classpath://patchproductsproductIdapplicationjsonproductexperienceapiconfigtest1\set-event_variable_1.dwl')]" encoding="UTF-8" mediaType="application/json" />
+					<munit:variable key="loggingVars" value="#[output application/json --- readUrl('classpath://patchproductsproductIdapplicationjsonproductexperienceapiconfigtest1\set-event_variable_2.dwl')]" encoding="UTF-8" mediaType="application/json" />
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to patch:\products\(productId):application\json:product-experience-api-config" doc:id="0f4551b0-8f9f-4232-856a-a9d86372e94f" name="patch:\products\(productId):application\json:product-experience-api-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="59827955-d1ba-469f-9822-6ca70dbaf8c5" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import patchproductsproductIdapplicationjsonproductexperienceapiconfigtest1::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="delete:\products\(productId):product-experience-api-config-test" doc:id="eb960bba-760e-4a9b-9d18-fea5eb0c4f96" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock product-request-implementation-subflow" doc:id="8cc58b7c-0d07-45a1-a158-c1a01c464d01" processor="flow-ref">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="bc3d8123-8038-4bfa-9f50-93eb41ca2e88" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[output application/json --- readUrl('classpath://deleteproductsproductIdproductexperienceapiconfigtest\mock_payload.dwl')]" mediaType="application/json" encoding="UTF-8" />
+					<munit-tools:attributes value="#[readUrl('classpath://deleteproductsproductIdproductexperienceapiconfigtest\mock_attributes.dwl')]" />
+					<munit-tools:variables >
+						<munit-tools:variable key="path" value="#[output application/java --- readUrl('classpath://deleteproductsproductIdproductexperienceapiconfigtest\mock_variable_.dwl')]" mediaType="application/java" encoding="UTF-8" />
+						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://deleteproductsproductIdproductexperienceapiconfigtest\mock_variable_1.dwl')]" />
+						<munit-tools:variable key="method" value="#[output application/java --- readUrl('classpath://deleteproductsproductIdproductexperienceapiconfigtest\mock_variable_2.dwl')]" mediaType="application/java" encoding="UTF-8" />
+						<munit-tools:variable key="apiKickOffTime" value="#[output application/json --- readUrl('classpath://deleteproductsproductIdproductexperienceapiconfigtest\mock_variable_3.dwl')]" mediaType="application/json" encoding="UTF-8" />
+						<munit-tools:variable key="loggingVars" value="#[output application/json --- readUrl('classpath://deleteproductsproductIdproductexperienceapiconfigtest\mock_variable_4.dwl')]" mediaType="application/json" encoding="UTF-8" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="a960344b-0a89-435d-9007-a18a3df5da8a" >
+				<munit:payload value="#[readUrl('classpath://deleteproductsproductIdproductexperienceapiconfigtest\set-event_payload2.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://deleteproductsproductIdproductexperienceapiconfigtest\set-event_attributes2.dwl')]" />
+				<munit:variables >
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://deleteproductsproductIdproductexperienceapiconfigtest\set-event_variable_6.dwl')]" />
+					<munit:variable key="apiKickOffTime" value="#[output application/json --- readUrl('classpath://deleteproductsproductIdproductexperienceapiconfigtest\set-event_variable_7.dwl')]" encoding="UTF-8" mediaType="application/json" />
+					<munit:variable key="loggingVars" value="#[output application/json --- readUrl('classpath://deleteproductsproductIdproductexperienceapiconfigtest\set-event_variable_8.dwl')]" encoding="UTF-8" mediaType="application/json" />
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to delete:\products\(productId):product-experience-api-config" doc:id="249909f8-2304-4192-93bd-1cb1f631baf5" name="delete:\products\(productId):product-experience-api-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="80763cc9-20f8-44ac-a22b-d45849338783" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import deleteproductsproductIdproductexperienceapiconfigtest::assert_expression_payload2
+---
+assert_expression_payload2::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
