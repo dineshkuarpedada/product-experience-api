@@ -1,0 +1,20 @@
+name: MuleSoft CI/CD
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Build Mule Application
+        run: mvn clean deploy
+      - name: Deploy to CloudHub 2.0
+        run: mvn clean deploy -DmuleDeploy
